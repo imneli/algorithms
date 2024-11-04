@@ -28,4 +28,38 @@ def selectionSort(arr):
         arr[i], arr[min_idx] = arr[min_idx], arr[i]
     return arr
 
+def merge_sort(arr):
+     
+    n = len(arr)
+
+    if n <= 1:
+        return arr
+
+    mid = n // 2
+    left = arr[:mid]
+    right = arr[mid:]
+
+    left_sort = merge_sort(left)
+    right_sort = merge_sort(right)
+
+    return merge(left_sort, right_sort)
+
+
+def merge(left, right):
+    result = []
+    i = j = 0
+
+    while i < len(left) and j < len(right): # mescla as duas listas, comparando os elementos e colocando na ordem certa
+        if left[i] < right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+    result.extend(left[i:])
+    result.extend(right[j:])
+
+    return result
+
+
 print(selectionSort(arr))
